@@ -11,10 +11,16 @@
   (empty? (rest coll))))
 
 (defn my-last [coll]
-  :-)
+  (if (empty? coll)
+    nil
+  (if (singleton? coll)
+    (first coll)
+   (my-last (rest coll)))))
 
 (defn max-element [a-seq]
-  :-)
+  (if (< (count a-seq) 2)
+    (my-last a-seq)
+    (max (first a-seq) (max-element (rest a-seq)))))
 
 (defn seq-max [seq-1 seq-2]
   [:-])
