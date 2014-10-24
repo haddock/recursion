@@ -32,8 +32,17 @@
     (my-last a-seq)
     (seq-max (first a-seq) (longest-sequence (rest a-seq)))))
 
+(defn my-map [f a-seq]
+  (if (empty? a-seq)
+    a-seq
+    (cons (f (first a-seq))
+          (my-map f (rest a-seq)))))
+
 (defn my-filter [pred? a-seq]
-  [:-])
+  (let [fst (first a-seq) rst (rest a-seq)]
+  (cond (empty? a-seq) a-seq
+        (pred? fst) (cons fst (my-filter pred? rst))
+        :else (my-filter pred? rst))))
 
 (defn sequence-contains? [elem a-seq]
   :-)
