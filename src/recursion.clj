@@ -83,11 +83,12 @@
         :else (cons what-to-repeat (my-repeat (dec how-many-times) what-to-repeat))))
 
 (defn my-range [up-to]
-  (cond (= 0 up-to) '()
+  (cond (< 1 up-to) '()
         :else (cons (dec up-to) (my-range (dec up-to)))))
 
 (defn tails [a-seq]
-  [:-])
+  (cond (empty? a-seq) '(())
+        :else (cons (seq a-seq) (tails (rest a-seq)))))
 
 (defn inits [a-seq]
   [:-])
