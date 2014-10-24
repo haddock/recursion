@@ -70,7 +70,8 @@
         ))
 
 (defn power [n k]
-  :-)
+  (cond (zero? k) 1
+        :else (* n (power n (dec k)))))
 
 (defn fib [n]
   :-)
