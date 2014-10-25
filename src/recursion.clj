@@ -132,10 +132,18 @@
     (cons (my-take i a-seq) (cons (my-drop i a-seq) '()))))
 
 (defn seq-merge [a-seq b-seq]
-  [:-])
+  (cond (empty? a-seq) b-seq
+        (empty? b-seq) a-seq
+        :else (let [a (first a-seq) b (first b-seq)]
+                (if (<= a b)
+                  (cons a (seq-merge (rest a-seq) b-seq))
+                  (cons b (seq-merge a-seq (rest b-seq)))))))
 
 (defn merge-sort [a-seq]
-  [:-])
+  (if (<= (count a-seq) 1)
+    a-seq
+    (let [[seq1 seq2] (halve a-seq)]
+      (seq-merge (merge-sort seq1) (merge-sort seq2)))))
 
 (defn split-into-monotonics [a-seq]
   [:-])
