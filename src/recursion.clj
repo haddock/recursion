@@ -118,7 +118,9 @@
   (un-frequencies-helper '() a-map))
 
 (defn my-take [n coll]
-  [:-])
+  (if (or (<= n 0) (empty? coll))
+    '()
+    (cons (first coll) (my-take (dec n) (rest coll)))))
 
 (defn my-drop [n coll]
   [:-])
