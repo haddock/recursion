@@ -107,8 +107,15 @@
 (defn my-frequencies [a-seq]
   (my-frequencies-helper {} a-seq))
 
+(defn un-frequencies-helper [unfreqs a-map]
+  (if (empty? a-map)
+    unfreqs
+    (let [freq-pair (first a-map)
+          seq (repeat (get freq-pair 1) (get freq-pair 0))]
+      (un-frequencies-helper (concat unfreqs seq) (rest a-map)))))
+
 (defn un-frequencies [a-map]
-  [:-])
+  (un-frequencies-helper '() a-map))
 
 (defn my-take [n coll]
   [:-])
