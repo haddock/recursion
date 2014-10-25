@@ -124,11 +124,12 @@
 
 (defn my-drop [n coll]
   (if (or (<= n 0) (empty? coll))
-    coll
+    (seq coll)
     (my-drop (dec n) (rest coll))))
 
 (defn halve [a-seq]
-  [:-])
+  (let [i (int (/ (count a-seq) 2))]
+    (cons (my-take i a-seq) (cons (my-drop i a-seq) '()))))
 
 (defn seq-merge [a-seq b-seq]
   [:-])
